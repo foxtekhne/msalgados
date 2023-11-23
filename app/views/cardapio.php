@@ -305,7 +305,7 @@
 						"	<img src=\"public/assets/uploaded_img/" + product.image + "\" alt=\"" + product.name + "\" class=\"product-image\">"+
 						"	<div class=\"product-price-container container-price-product\">"+
 						"		<span class=\"product-price\">R$" + product.price + "</span>"+
-						"		<br><button type=\"button\" class=\"button-hover-background\" onclick=\"addProductToCart( " + product.id + ") \">Adicionar ao carrinho</button>"+
+						"		<br><button type=\"button\" class=\"button-hover-background\" onclick=\"addProductToCart("+ product.id +")\">Adicionar ao carrinho</button>"+
 						"	</div>"+
 						"</div>";
                 });

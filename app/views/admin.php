@@ -146,6 +146,8 @@
         <br>
     </div>
 
+    <button id="logout-btn" class="btn btn-danger">Logout</button>
+
 
     <script>
 
@@ -263,16 +265,38 @@
                 });
             });
 
+            // Botão de logout clicado
+            $('#logout-btn').click(function() {
+                // Exibe uma mensagem de confirmação
+                if (confirm('Você foi desconectado. Faça login para acessar novamente!')) {
+                    // Se o usuário clicar em "OK", faça a chamada AJAX para encerrar a sessão
+                    $.ajax({
+                        type: 'POST',
+                        url: 'users/logout', 
+                        dataType: 'json',
+                        success: function(response) {
+                            console.log(response); 
+                            if (response.logout === 'true') {
+                                // Logout bem-sucedido, redireciona para a página de login
+                                window.location.href = 'login';
+                            } else {
+                                // Algo deu errado no logout, exibe mensagem de erro
+                                alert('Erro ao encerrar a sessão. Tente novamente.');
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            // Tratar erro na chamada AJAX
+                            console.error('Erro na requisição AJAX:', textStatus, errorThrown);
+                        }
+                    });
+                }
+            });
+
         });
 
-        /* Inserir novos produtos */
 
     </script>
 
-    <script>
-        
-        
-    </script>
     
     
 

@@ -78,13 +78,13 @@
                 // Faça a chamada AJAX
                 $.ajax({
                     type: 'POST',
-                    url: 'users', // Substitua pelo caminho correto
+                    url: 'users', 
                     data: { username: username, password: password },
                     dataType: 'json',
                     success: function(response) {
                         if (response.login === 'true') {
                             // Login bem-sucedido, redireciona para a página home
-                            window.location.href = 'admin'; // Substitua pelo caminho correto
+                            window.location.href = 'admin'; 
                         } else {
                             // Login falhou, exibe mensagem de erro
                             $('#error-message').text('Login falhou. Verifique suas credenciais.');
