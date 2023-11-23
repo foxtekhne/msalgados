@@ -1,0 +1,59 @@
+{
+	"home" : { 
+		"path" : "app/views/home.php",
+		"sessionKey": [{"idUsuario": false}], 
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/public_home.php"
+	},
+	"users" : {
+		"path" : "app/controllers/CtrlUsers.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"users/add" : {
+		"path" : "app/controllers/CtrlAdminUsers.php",
+		"sessionKey": [{"idUsuario": true}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"products" : {
+		"path" : "app/controllers/CtrlProducts.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"products/add" : {
+		"path" : "app/controllers/CtrlAdminProducts.php",
+		"sessionKey": [{"idUsuario": true}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"cardapio" : {
+		"path" : "app/views/cardapio.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"admin" : {
+		"path" : "app/views/admin.php",
+		"sessionKey": [{"idUsuario": true}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"sobrenos" : {
+		"path" : "app/views/sobrenos.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	},
+	"login" : {
+		"path" : "app/views/login.php",
+		"sessionKey": [{"idUsuario": false}],
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/controllers/Error.php"
+	}
+	
+	
+	
+}
