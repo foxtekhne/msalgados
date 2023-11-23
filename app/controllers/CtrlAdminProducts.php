@@ -27,7 +27,7 @@ class CtrlProducts extends ControllerHandler {
             $image = $_FILES['image'];
     
             // Diretório onde as imagens serão salvas
-            $uploadDirectory = 'public/assets/uploaded_image/';
+            $uploadDirectory = 'public/assets/uploaded_img/';
     
             // Garante que o diretório exista
             if (!is_dir($uploadDirectory)) {
@@ -40,10 +40,11 @@ class CtrlProducts extends ControllerHandler {
             $imageExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
     
             // Gera um nome único para o arquivo usando o nome do produto e a extensão original
-            $imageName = $uploadDirectory . $name . '.' . $imageExtension;
+            $imageName = $name . '.' . $imageExtension;
     
             // Move o arquivo para o diretório desejado
-            move_uploaded_file($image['tmp_name'], $imageName);
+            $imagePath = $uploadDirectory . $imageName;
+            move_uploaded_file($image['tmp_name'], $imagePath);
         } else {
             // Se nenhum arquivo foi enviado, você pode definir um valor padrão ou tratar de acordo com a lógica do seu aplicativo
             $imageName = 'logo-original.png';
