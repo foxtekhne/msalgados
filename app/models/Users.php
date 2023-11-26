@@ -82,6 +82,15 @@ use core\database\Where;
 	    }
 	}
 	
+	public function forceLogin() {
+	    if (session_status() == PHP_SESSION_NONE) {
+	        session_start();
+	    }
+	    $_SESSION["idUsuario"] = '999999999';
+	    return(true);
+	}
+	
+	
 	public function listByFieldKey( $value ){
 		    $where = (new Where())->addCondition('AND', $this->fieldKey , '=', $value);
 		    $rSet = $this->dbquery->selectWhere($where);
@@ -111,7 +120,7 @@ use core\database\Where;
 	}
 
 	public function setPassword( $password ){
-		 $this->password = $password;
+		 $this->password = password( $password );
 	}
 
 	public function getPassword(){

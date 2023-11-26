@@ -75,10 +75,22 @@
 .dark .sidebar a{
     color: #ffd900;
 }
-
+.dark footer{
+    color: #ffd900;
+}
 .openbtn:hover {
     background-color: #444;
 }
+
+.dark #footer_subscribe p{
+    color: #ffd900;
+}
+
+.dark footer p{
+    color: #ffd900;
+}
+
+
 
 #main {
     transition: margin-left .5s;
@@ -388,7 +400,7 @@ main {
     color: #ffffff;
     cursor: pointer;
     padding: 18px;
-    width: 60%;
+    width: 75%;
     margin: auto;
     border: none;
     text-align: center;

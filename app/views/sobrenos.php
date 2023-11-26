@@ -106,12 +106,11 @@
                     <p class="legenda-insta"> Quer saber algo sobre os produtos ou funcionamente do Mestre dos Salgados? Manda uma DM, responderemos o mais rápido possível. Já segue o @: <b><a href="https://www.instagram.com/mdossalgados/" style="text-decoration: none; color:black;">mdossalgados</a></b></p>
                 </div>
             </div>
-
-                        <div class="instagram" widht="300px"><div class="insta"><p> <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/4c6f8c54070155358d4ec3fb67aabac4.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe></p>
-                            </div>
-                            <div class="mapa">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3660.540952094753!2d-46.53878132569908!3d-23.44094407888283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef51f701954eb%3A0x11e33a46ff712e62!2sAv.%20Salgado%20Filho%2C%203309%20-%20Jardim%20Iporanga%2C%20Guarulhos%20-%20SP%2C%2007115-000!5e0!3m2!1spt-BR!2sbr!4v1699619349314!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> </div>
-                            </div>
+            
+        
+<div class="instagram">
+            <iframe src='https://www.juicer.io/api/feeds/mdossalgados/iframe' frameborder='0' width='90%' height='90%' style='display:block;margin:0 auto;'></iframe>
+                            
             </div>
         </div>
 

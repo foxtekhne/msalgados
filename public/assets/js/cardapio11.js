@@ -137,15 +137,15 @@ function makePurchase() {
 	
 	// Criar mensagem com os produtos comprados
     let purchaseMessage = "Iremos te redirecionar ao Whatsapp para enviar seu pedido! Lá você pode falar com um de nossos atendentes sobre a retirada e o pagamento.\n\nProdutos selecionados:\n\n";
-    cartItems.forEach(item => {
-      purchaseMessage += `${item.name} - Quantidade: ${item.quantity}\n`;
+    carrinho.forEach(item => {
+      purchaseMessage += `${item.name} - Quantidade: ${item.quantidade}\n`;
     });
     purchaseMessage += `\nValor do pedido: R$${totalAmount}\n\nAgradecemos pela preferência! :)`;
 
     alert(purchaseMessage);
 	generateWhatsAppURL();
     document.querySelector(".cart-table tbody").innerHTML = "";
-    cartItems = []; // Limpar o array de itens do carrinho
+    carrinho = []; // Limpar o array de itens do carrinho
     updateTotal();
     
   }

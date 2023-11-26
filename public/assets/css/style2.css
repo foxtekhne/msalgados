@@ -98,7 +98,6 @@
 .wrapper p {
   color: black;
   font-family: "Poppins";
-  
 }
 .wrapper h2 {
   text-align: center;
@@ -114,14 +113,10 @@
         align-items: center;
         height: 100vh;
         margin: 0;
-   
-
-    
         text-align: center;
         font-size: 24px; /* Ajuste o tamanho da fonte conforme desejado */
-    
-
 }
+
 .btn-logout{
   margin:5px;
   align-items: center; 
@@ -156,7 +151,6 @@
 
 .text-banner-cardapio p{
   font-family: "Oswald";
-
   font-size: 4.2em;
   color: #FFFFFF;
   text-shadow: 2px 2px 2px #111;
@@ -181,6 +175,16 @@
 
 .dark .section2-index{
   background-color: #000000;
+}
+
+
+.section2-cardapio{
+  background-color: white;
+}
+
+
+.dark .section2-cardapio{
+  background-color: black;
 }
 
 :root {
@@ -353,7 +357,6 @@
   padding: 10px 8px;
   border: 0;
   border-radius: 6px;
-
   transition: filter 0.2s;
 }
 
@@ -387,6 +390,12 @@
   transition: filter 0.2s;
 
   margin-bottom: 2%;
+}
+
+.dark .purchase-button{
+  background-color: #ffd900;
+  color: #000000;
+
 }
 
 .modal {
@@ -486,7 +495,9 @@
 .instagram{
 text-align: center;
 margin: 0 auto;
-display: inline-block
+display: inline-block;
+width: 100%;
+height: 80%;
 }
 
 
@@ -494,7 +505,7 @@ display: inline-block
   display: grid;
   grid-template-columns: 50% 50%;
   justify-content: space-around;
-  background-image: url(../images/banner-coxinhas-dark.jpg);
+  background-image: url(../images/banner-coxinhas.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -604,6 +615,14 @@ text-align: center;
 
 /*Section 1 - Admin*/
 
+.form-inserir-admin{
+  background-color: white;
+}
+
+.container-body{
+  background-color: #BBBBBB;
+}
+
 .banner-admin{
   background-image: url(../images/banner-admin.jpg);
   background-size: cover;
@@ -614,9 +633,6 @@ text-align: center;
   padding: 9% 0;
 }
 
-.dark .banner-admin{
-  background-image: url(../images/banner-admin-dark.jpg);
-}
 
 .text-banner-admin{
   margin: auto;
@@ -633,9 +649,6 @@ text-align: center;
   width: 100%;
 }
 
-.dark .text-banner-admin p{
-  color: #ffd900;
-}
 
 /*Formulário inserir produto*/
 
@@ -702,6 +715,7 @@ text-align: center;
   border-radius:4px;
   transition:0.4s; 
 }
+
 .login .btn:hover  { 
   background-color:#4c4c4c; 
 }
@@ -755,6 +769,8 @@ text-align: center;
   margin-bottom: 5%;
 }
 
+
+
 #productTable th, #productTable td {
   border: 1px solid #ddd;
   padding: 8px;
@@ -784,6 +800,131 @@ text-align: center;
   cursor: pointer;
 }
 
+
 .btnSave:hover, .btnDelete:hover {
   background-color: #886300;
+}
+
+/*Dark - Admin */
+
+.dark .boxLogin{
+  background-color: #696969;
+}
+
+.dark .padding{
+  background-color: #BBBBBB;
+}
+
+.dark .login{
+  background-color: #BBBBBB
+}
+
+.dark .container-body{
+  background-color: #696969
+}
+
+.dark .container-admin{
+  background-color: #696969
+}
+
+.dark #productTable{
+  background-color: #BBBBBB;
+}
+
+.dark .page{
+  background-color: #696969;
+}
+
+.dark .banner-admin{
+  background-image: url(../images/banner-admin-dark.jpg);
+}
+
+.dark .text-banner-admin p{
+  color: #ffd900;
+}
+
+.dark .login .btn { 
+  background-color:#ffd900;
+  color: black;
+}
+
+.dark .btnSave{
+  background-color: #ffd900;
+  color: black;
+}
+
+.dark .btnDelete {
+  background-color: #ffd900;
+  color: black
+}
+
+.dark #productTable th {
+  background-color: #ffd900;
+  color: black;
+}
+
+
+/*Celular */
+@media only screen and (max-width: 767px) {
+  .section3-sobrenos {
+    width: 90%;
+    font-size: 14px; 
+  }
+}
+
+/* Tablet/Notebook */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .section3-sobrenos {
+    width: 100%; 
+    font-size: 16px; 
+  }
+}
+
+/* Celular */
+@media only screen and (max-width: 767px) {
+  .section3-sobrenos {
+    width: 90%; 
+    font-size: 14px; 
+  }
+}
+
+/* Tablet/Notebook*/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .section3-sobrenos {
+    width: 100%; 
+    font-size: 16px; 
+  }
+}
+
+
+/* Celular*/
+@media only screen and (max-width: 767px) {
+  .instagram {
+    height: 200px; 
+  }
+}
+
+/* Tablet/Notebook*/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .instagram {
+    height: 250px;
+  }
+}
+
+/* Notebooks/*Computador */
+@media only screen and (min-width: 1025px) {
+  .instagram {
+    height: 350px;
+  }
+}
+
+/* Todos os dispositivos */
+
+
+
+@media (max-width: 768px) {
+
+  .content-section3-index{
+      width: 100%;
+  }
 }

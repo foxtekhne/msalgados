@@ -146,7 +146,7 @@
         <br>
     </div>
 
-    <button id="logout-btn" class="btn btn-danger">Logout</button>
+    <a href="/msalgados-main/" id="logout-btn" class="btn btn-danger">Logout</a>
 
 
     <script>
@@ -266,7 +266,7 @@
             });
 
             // Botão de logout clicado
-            $('#logout-btn').click(function() {
+            $('#logout-btn').click(function( event ) {
                 // Exibe uma mensagem de confirmação
                 if (confirm('Você foi desconectado. Faça login para acessar novamente!')) {
                     // Se o usuário clicar em "OK", faça a chamada AJAX para encerrar a sessão
@@ -277,8 +277,7 @@
                         success: function(response) {
                             console.log(response); 
                             if (response.logout === 'true') {
-                                // Logout bem-sucedido, redireciona para a página de login
-                                window.location.href = 'login';
+                            	window.location = "http://localhost/msalgados-main";
                             } else {
                                 // Algo deu errado no logout, exibe mensagem de erro
                                 alert('Erro ao encerrar a sessão. Tente novamente.');

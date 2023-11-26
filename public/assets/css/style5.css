@@ -71,6 +71,42 @@ footer {
     opacity: 0.8;
 }
 
+.dark #footer_social_media .footer-link i {
+    font-size: 1.25rem;  
+    color: #ffd900;  
+}
+
+.dark .fa-solid{
+    color: #ffd900
+}
+
+.dark #footer_social_media .footer-link:hover {
+    opacity: 0.8;
+    color: #ffd900;
+}
+
+
+
+.dark .footer-list .footer-link {
+    color: #ffa700; 
+    transition: all 0.4s;
+}
+
+.dark .footer-list .footer-link:hover {
+    color: #ffd900; 
+}
+
+
+.dark #footer_subscribe {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dark #footer_subscribe p {
+    color: #ffd900
+}
+
 #instagram {
     background: linear-gradient(#7f37c9, #ff2992, #ff9807);
 }

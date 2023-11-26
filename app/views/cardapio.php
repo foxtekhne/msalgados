@@ -144,7 +144,7 @@
                         <thead>
                             <tr>
                             <th class="table-head-item first-col">Item</th>
-                            <th class="table-head-item second-col">Preço</th>
+                            <th class="table-head-item second-col">Preço Unitário</th>
                             <th class="table-head-item thrird-col">Quantidade</th>
                             </tr>
                         </thead>
@@ -263,6 +263,12 @@
 
 
     <script>
+
+		var carrinho = [];
+		var products = null;
+		var totalAmount = 0;
+
+	    
         function openNav() {
           document.getElementById("mySidebar").style.width = "250px";
           document.getElementById("main").style.marginLeft = "250px";
@@ -287,16 +293,15 @@
             }
           });
         }
-    </script>
-    
-    <script>
-
+        
         $(document).ready(function() {
 
             $('#myModal').modal('show');
 			
             $.get("products").done(function(data) {
                 data = JSON.parse(data);
+                products = data;
+                console.table(data);
                 var hmtlOut = "";
                 $.each(data, function(index, product) {
 					hmtlOut +=
@@ -305,14 +310,68 @@
 						"	<img src=\"public/assets/uploaded_img/" + product.image + "\" alt=\"" + product.name + "\" class=\"product-image\">"+
 						"	<div class=\"product-price-container container-price-product\">"+
 						"		<span class=\"product-price\">R$" + product.price + "</span>"+
-						"		<br><button type=\"button\" class=\"button-hover-background\" onclick=\"addProductToCart("+ product.id +")\">Adicionar ao carrinho</button>"+
+						"		<br><button type=\"button\" class=\"button-hover-background\" onclick=\"adicionarNoCarrinho("+product.id+");\">Adicionar ao carrinho</button>"+
 						"	</div>"+
 						"</div>";
                 });
                 $("#products-container").html(hmtlOut);
             });
         });
-            
+
+
+        function adicionarNoCarrinho( id ) {
+            const produto 			= products.find(p => p.id === id);
+            const produtoNoCarrinho = carrinho.find(item => item.id === id);
+            if (produtoNoCarrinho) {
+                produtoNoCarrinho.quantidade++;
+            } else {
+                carrinho.push({ ...produto, quantidade: 1 });
+            }
+            atualizarTabelaCarrinho();
+        }
+                
+        function atualizarTabelaCarrinho() {
+            const tbody = document.querySelector('.cart-table tbody');
+            tbody.innerHTML = ''; 
+            carrinho.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.classList.add('cart-product');
+                tr.innerHTML = ''+
+                '    <td class="product-identification">'+
+                '        <img src="images/'+item.image+'" alt="'+item.name+'" class="cart-product-image">'+
+                '        <strong class="cart-product-title">'+item.name+'</strong>'+
+                '    </td>'+
+                '    <td>'+
+                '        <span class="cart-product-price">R$'+item.price+'</span>'+
+                '    </td>'+
+                '    <td>'+
+                '        <input type="text" readonly value="'+item.quantidade+'" min="0" class="product-qtd-input">'+
+                '        <button type="button" class="remove-product-button" onclick="removerDoCarrinho('+item.id+')">Remover</button>'+
+                '    </td>'+
+                '';
+
+                tbody.appendChild(tr);
+            });
+
+            atualizarTotal();
+        }
+        
+        function atualizarTotal() {
+            const total = carrinho.reduce((acc, item) => acc + (item.price * item.quantidade), 0);
+            const totalElement = document.querySelector('.cart-total-container span');
+            totalAmount = total.toFixed(2);
+            totalElement.textContent = `R$${total.toFixed(2)}`;
+        }
+        
+        function removerDoCarrinho(id) {
+            const index = carrinho.findIndex(item => item.id === id);
+            if (index > -1) {
+                carrinho.splice(index, 1);
+            }
+            atualizarTabelaCarrinho();
+        }
+
+           
     </script>
     
 </body>
