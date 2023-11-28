@@ -59,7 +59,12 @@
                     </a>
                     <a href="login">
                         <i class="fa-solid fa-user" style="color: #ffffff;"></i> <span>Login</span>
-                    </a>        
+                    </a>
+                    
+                    <a href="login">
+                        <i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i> <span id="logout-btn">Logout</span>
+                    </a>
+
                 </div>
 
                 <div id="main">
@@ -102,11 +107,11 @@
                         <h1><i class="fa-solid fa-pen-to-square" style="color: #ffffff;"></i> Inserir Novo Produto</h1>
                         <div class="padding">
                             <label for="name" class="form-label">Nome do Produto:</label>
-                            <input type="text" class="form-control campos" id="name" name="name" required>
+                            <input type="text" class="form-control campos" id="name" name="name" required size="100">
                             <label for="price" class="form-label">Preço:</label>
-                            <input type="number" class="form-control campos" id="price" name="price" step="0.01" required>
+                            <input type="number" class="form-control campos" id="price" name="price" step="0.01" required size="100">
                             <label for="image" class="form-label">Imagem do Produto:</label>
-                            <input type="file" class="form-control campos" id="image" name="image" accept="image/*" required>
+                            <input type="file" class="form-control campos" id="image" name="image" accept="image/*" required size="100">
                             <br>
                             <button type="submit" class="btn btn-primary">Salvar Produto</button>
                         </div><!--padding-->
@@ -145,8 +150,6 @@
         <br>
         <br>
     </div>
-
-    <a href="/msalgados-main/" id="logout-btn" class="btn btn-danger">Logout</a>
 
 
     <script>

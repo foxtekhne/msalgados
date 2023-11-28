@@ -23,6 +23,7 @@
             justify-content: space-between;
             align-items: center;
             position: fixed;
+            z-index: 1000;
         }
         
         .modal-body{
@@ -36,30 +37,50 @@
 	}
 	
 	.card {
-	    height: 400px; 
+	    height: 100%; 
 	    text-align: center;
+        z-index: 1;
+        background-color: #f8ca92cf;
+        padding: 20px; /* ou qualquer valor que funcione bem para você */
+        text-align: center;
+        border: 2px solid #A63C06;
+        max-width: 100%;
 	}
+
 	.card:hover {
-	    height: 400px; 
+	    height: 100%; 
 	    text-align: center;
-	    background-color: #DDDDDD;
+	    background-color: #febb69cf;
 	}	
+
 	.card-img-top {
 	    width: 90%; 
 	    height: 200px; 
 	    object-fit: cover; 
 	    text-align: center;
 	}	
+
 	.card .btn-primary {
 	    width: 90%;
 	    margin: 0 auto; 
 	    display: block; 
 	    text-align: center;
+        background-color: #A63C06;
+        border: 2px solid #A63C06;
+        padding: 6px 4px;
+        font-weight: bold;
+        margin-bottom: 3%;
+        transition: 0.2s;
 	}
+
+    .card .btn-primary:hover{
+        background-color: #C36F09;
+    }
+
 	.card-title, .card-text {
 	    width: 90%;
 	    font-weight: bold; 
-    	    margin: 0 auto; 
+    	margin: 0 auto; 
 	    display: block; 
 	    text-align: center;
 	}
@@ -120,9 +141,6 @@
                     </a>
                     <a href="login">
                         <i class="fa-solid fa-user" style="color: #ffffff;"></i> <span>Login</span>
-                    </a> 
-                     <a href="cadastro">
-                        <i class="fa-solid fa-user" style="color: #ffffff;"></i> <span>Cadastro</span>
                     </a>        
                 </div>
                 <div id="main">
@@ -155,6 +173,8 @@
         </div>
 
         <div class="section2-cardapio">
+
+        <br><br><br>
             
             <section class="container normal-section">
 
