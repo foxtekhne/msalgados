@@ -29,6 +29,42 @@
         .modal-body{
             text-align:justify;
         }
+        
+
+	
+	.col-md-4 {
+	    padding: 10px; 
+	}
+	
+	.card {
+	    height: 400px; 
+	    text-align: center;
+	}
+	.card:hover {
+	    height: 400px; 
+	    text-align: center;
+	    background-color: #DDDDDD;
+	}	
+	.card-img-top {
+	    width: 90%; 
+	    height: 200px; 
+	    object-fit: cover; 
+	    text-align: center;
+	}	
+	.card .btn-primary {
+	    width: 90%;
+	    margin: 0 auto; 
+	    display: block; 
+	    text-align: center;
+	}
+	.card-title, .card-text {
+	    width: 90%;
+	    font-weight: bold; 
+    	    margin: 0 auto; 
+	    display: block; 
+	    text-align: center;
+	}
+	
     </style>
 	
 
@@ -85,6 +121,9 @@
                     </a>
                     <a href="login">
                         <i class="fa-solid fa-user" style="color: #ffffff;"></i> <span>Login</span>
+                    </a> 
+                     <a href="cadastro">
+                        <i class="fa-solid fa-user" style="color: #ffffff;"></i> <span>Cadastro</span>
                     </a>        
                 </div>
                 <div id="main">
@@ -134,7 +173,7 @@
             <section class="carrinho">
 
                 <h2 class="section2-carrinho-title">
-                    Carrinho
+                    Carrinho 
                 </h2>
 
                 <section class="container normal-section">
@@ -191,12 +230,14 @@
                         </tfoot>
                     </table>
 
-                <button type="button" class="purchase-button" onclick="openModal()">Finalizar Compra</button>
+                <button type="button" class="purchase-button" onclick="carrinho.makePurchase();">Finalizar Compra</button>
     
             </section>
+            </section>
+            
 
     </div>
-
+</section>
     <footer>
         <div id="footer_content">
             <div id="footer_contacts">
@@ -262,117 +303,173 @@
     </footer>
 
 
-    <script>
+<script>
+	class Carrinho {
+		constructor() {
+			this.produtos = [];
+			this.total = 0;
+		}
 
-		var carrinho = [];
-		var products = null;
-		var totalAmount = 0;
+		adicionarProduto(produto) {
+			const produtoNoCarrinho = this.produtos.find(p => p.id === produto.id);
+			if (produtoNoCarrinho) {
+			    produtoNoCarrinho.quantidade++;
+			} else {
+			    this.produtos.push({ ...produto, quantidade: 1 });
+			}
+			this.atualizarTotal();
+			}
 
+			removerProduto(id) {
+			const index = this.produtos.findIndex(p => p.id === id);
+			if (index > -1) {
+			    this.produtos.splice(index, 1);
+			}
+			this.atualizarTotal();
+		}
 	    
-        function openNav() {
-          document.getElementById("mySidebar").style.width = "250px";
-          document.getElementById("main").style.marginLeft = "250px";
-        }
-        
-        function closeNav() {
-          document.getElementById("mySidebar").style.width = "0";
-          document.getElementById("main").style.marginLeft= "0";
-        }
-        
-        var acc = document.getElementsByClassName("accordion-section3-index");
-        var i;
-        
-        for (i = 0; i < acc.length; i++) {
-          acc[i].addEventListener("click", function() {
-            this.classList.toggle("active-section3-index");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-              panel.style.display = "none";
-            } else {
-              panel.style.display = "block";
-            }
-          });
-        }
-        
-        $(document).ready(function() {
+		makePurchase() {
+			console.table(this.getProdutos());
+			if (this.getTotal() === 0) {
+				alert("Seu carrinho está vazio!");
+			} else {
+				let purchaseMessage = "Iremos te redirecionar ao Whatsapp para enviar seu pedido! Lá você pode falar com um de nossos atendentes sobre a retirada e o pagamento.\n\nProdutos selecionados:\n\n";
+				this.getProdutos().forEach(item => {
+					purchaseMessage += `${item.name} - Quantidade: ${item.quantidade}\n`;
+				});
+				purchaseMessage += `\nValor do pedido: R$${this.getTotal()}\n\nAgradecemos pela preferência! :)`;
+				alert(purchaseMessage);
+				this.generateWhatsAppURL();
+				document.querySelector(".cart-table tbody").innerHTML = "";
+		    		this.produtos = [];
+		    		this.atualizarTotal();
+			}
+		}
 
-            $('#myModal').modal('show');
-			
-            $.get("products").done(function(data) {
-                data = JSON.parse(data);
-                products = data;
-                console.table(data);
-                var hmtlOut = "";
-                $.each(data, function(index, product) {
-					hmtlOut +=
-						"<div class=\"movie-product\">"+
-						"	<strong class=\"product-title\">" + product.name + "</strong>"+
-						"	<img src=\"public/assets/uploaded_img/" + product.image + "\" alt=\"" + product.name + "\" class=\"product-image\">"+
-						"	<div class=\"product-price-container container-price-product\">"+
-						"		<span class=\"product-price\">R$" + product.price + "</span>"+
-						"		<br><button type=\"button\" class=\"button-hover-background\" onclick=\"adicionarNoCarrinho("+product.id+");\">Adicionar ao carrinho</button>"+
-						"	</div>"+
-						"</div>";
-                });
-                $("#products-container").html(hmtlOut);
-            });
-        });
+		generateWhatsAppURL() {
+			const pedidoItens = this.getProdutos().map(item => `*${item.name}* - Quantidade: ${item.quantidade}`).join('\n');
+			const valorTotal = this.getTotal().replace(".", ",");
+			const mensagem = encodeURIComponent(
+				`*Olá! Selecionei os itens do meu pedido pelo site, e gostaria de retirar na loja.*\n\n` +
+				`*Pedido:*\n\n` +
+				`${pedidoItens}\n\n` +
+				`*Valor total:*\n\n` +
+				`R$${valorTotal}\n\n` +
+				`Agradecemos pela preferência! :)`
+			);
+			const numeroTelefone = "5511970771454"; // Substitua pelo seu número de telefone
+			const urlBaseWhatsApp = "https://wa.me/";
+			const urlWhatsApp = `${urlBaseWhatsApp}${numeroTelefone}/?text=${mensagem}`;
+			window.open(urlWhatsApp, '_blank');
+		}
+		atualizarTotal() {
+			this.total = this.produtos.reduce((acc, produto) => acc + (produto.price * produto.quantidade), 0);
+		}
+
+		getProdutos() {
+			return this.produtos;
+		}
+
+		getTotal() {
+			return this.total.toFixed(2);
+		}
+	}
+
+	var carrinho = new Carrinho();
+	var products = []; 
 
 
-        function adicionarNoCarrinho( id ) {
-            const produto 			= products.find(p => p.id === id);
-            const produtoNoCarrinho = carrinho.find(item => item.id === id);
-            if (produtoNoCarrinho) {
-                produtoNoCarrinho.quantidade++;
-            } else {
-                carrinho.push({ ...produto, quantidade: 1 });
-            }
-            atualizarTabelaCarrinho();
-        }
-                
-        function atualizarTabelaCarrinho() {
-            const tbody = document.querySelector('.cart-table tbody');
-            tbody.innerHTML = ''; 
-            carrinho.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.classList.add('cart-product');
-                tr.innerHTML = ''+
-                '    <td class="product-identification">'+
-                '        <img src="images/'+item.image+'" alt="'+item.name+'" class="cart-product-image">'+
-                '        <strong class="cart-product-title">'+item.name+'</strong>'+
-                '    </td>'+
-                '    <td>'+
-                '        <span class="cart-product-price">R$'+item.price+'</span>'+
-                '    </td>'+
-                '    <td>'+
-                '        <input type="text" readonly value="'+item.quantidade+'" min="0" class="product-qtd-input">'+
-                '        <button type="button" class="remove-product-button" onclick="removerDoCarrinho('+item.id+')">Remover</button>'+
-                '    </td>'+
-                '';
+	function adicionarNoCarrinho(produto) {
+		if (produto) {
+			carrinho.adicionarProduto(produto);
+			atualizarTabelaCarrinho();
+		}
+	}
 
-                tbody.appendChild(tr);
-            });
+	function atualizarTabelaCarrinho() {
+	    const tbody = document.querySelector('.cart-table tbody');
+	    tbody.innerHTML = ''; 
+	    carrinho.getProdutos().forEach(item => {
+		const tr = document.createElement('tr');
+		tr.classList.add('cart-product');
+		tr.innerHTML = 
+		'    <td class="product-identification">' +
+		'        <img src="public/assets/uploaded_img/' + item.image + '" alt="' + item.name + '" class="cart-product-image">' +
+		'        <strong class="cart-product-title">' + item.name + '</strong>' +
+		'    </td>' +
+		'    <td>' +
+		'        <span class="cart-product-price">R$' + item.price + '</span>' +
+		'    </td>' +
+		'    <td>' +
+		'        <input type="text" readonly value="' + item.quantidade + '" min="0" class="product-qtd-input">' +
+		'        <button type="button" class="remove-product-button" onclick="removerDoCarrinho(' + item.id + ')">Remover</button>' +
+		'    </td>';
 
-            atualizarTotal();
-        }
-        
-        function atualizarTotal() {
-            const total = carrinho.reduce((acc, item) => acc + (item.price * item.quantidade), 0);
-            const totalElement = document.querySelector('.cart-total-container span');
-            totalAmount = total.toFixed(2);
-            totalElement.textContent = `R$${total.toFixed(2)}`;
-        }
-        
-        function removerDoCarrinho(id) {
-            const index = carrinho.findIndex(item => item.id === id);
-            if (index > -1) {
-                carrinho.splice(index, 1);
-            }
-            atualizarTabelaCarrinho();
-        }
+		tbody.appendChild(tr);
+	    });
 
-           
-    </script>
+	    atualizarTotal();
+	}
+
+	function atualizarTotal() {
+	    const totalElement = document.querySelector('.cart-total-container span');
+	    totalElement.textContent = `R$${carrinho.getTotal()}`;
+	}
+
+	function removerDoCarrinho(id) {
+	    carrinho.removerProduto(id);
+	    atualizarTabelaCarrinho();
+	}
+
+	function openNav() {
+	    document.getElementById("mySidebar").style.width = "250px";
+	    document.getElementById("main").style.marginLeft = "250px";
+	}
+
+	function closeNav() {
+	    document.getElementById("mySidebar").style.width = "0";
+	    document.getElementById("main").style.marginLeft = "0";
+	}
+
+	var acc = document.getElementsByClassName("accordion-section3-index");
+	for (var i = 0; i < acc.length; i++) {
+	    acc[i].addEventListener("click", function () {
+		this.classList.toggle("active-section3-index");
+		var panel = this.nextElementSibling;
+		if (panel.style.display === "block") {
+		    panel.style.display = "none";
+		} else {
+		    panel.style.display = "block";
+		}
+	    });
+	}
+
+	$(document).ready(function () {
+		$('#myModal').modal('show');
+
+		$.get("products").done(function (data) {
+			data = JSON.parse(data);
+			products = data;
+			console.table(products);
+			var htmlOut = "";
+			$.each(data, function (index, product) {
+			    htmlOut +=
+				"<div class='col-md-4'>" + // Coluna para cada card
+				"   <div class='card'>" +
+				"       <img src='public/assets/uploaded_img/" + product.image + "' alt='" + product.name + "' class='card-img-top'>" +
+				"       <div class='card-body'>" +
+				"           <h5 class='card-title'>" + product.name + "</h5>" +
+				"           <p class='card-text'>R$" + product.price + "</p>" +
+				"           <button type='button' class='btn btn-primary' onclick='adicionarNoCarrinho(" + JSON.stringify(product) + ")'>Adicionar ao carrinho</button>" +
+				"       </div>" +
+				"   </div>" +
+				"</div>";
+			});
+			$("#products-container").html(htmlOut);
+	    	});
+	});
+</script>
+
     
 </body>
 </html>
