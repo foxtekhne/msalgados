@@ -280,7 +280,7 @@
                         success: function(response) {
                             console.log(response); 
                             if (response.logout === 'true') {
-                            	window.location = "http://localhost/msalgados-main";
+                            	window.location = "";
                             } else {
                                 // Algo deu errado no logout, exibe mensagem de erro
                                 alert('Erro ao encerrar a sessão. Tente novamente.');
