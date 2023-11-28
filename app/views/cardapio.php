@@ -16,7 +16,6 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
-	<script src="public/assets/js/cardapio11.js" async></script>
 
 	<style>
         .header-cardapio {
@@ -321,11 +320,11 @@
 			}
 
 			removerProduto(id) {
-			const index = this.produtos.findIndex(p => p.id === id);
-			if (index > -1) {
-			    this.produtos.splice(index, 1);
-			}
-			this.atualizarTotal();
+                const index = this.produtos.findIndex(p => p.id.toString() === id.toString());
+                if (index > -1) {
+                    this.produtos.splice(index, 1);
+                }
+                this.atualizarTotal();
 		}
 	    
 		makePurchase() {
@@ -357,7 +356,7 @@
 				`R$${valorTotal}\n\n` +
 				`Agradecemos pela preferência! :)`
 			);
-			const numeroTelefone = "5511970771454"; // Substitua pelo seu número de telefone
+			const numeroTelefone = "551123044699"; 
 			const urlBaseWhatsApp = "https://wa.me/";
 			const urlWhatsApp = `${urlBaseWhatsApp}${numeroTelefone}/?text=${mensagem}`;
 			window.open(urlWhatsApp, '_blank');
@@ -417,9 +416,9 @@
 	}
 
 	function removerDoCarrinho(id) {
-	    carrinho.removerProduto(id);
-	    atualizarTabelaCarrinho();
-	}
+        carrinho.removerProduto(Number(id));
+        atualizarTabelaCarrinho();
+    }
 
 	function openNav() {
 	    document.getElementById("mySidebar").style.width = "250px";
