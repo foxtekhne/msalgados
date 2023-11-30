@@ -275,7 +275,7 @@
                     // Se o usuário clicar em "OK", faça a chamada AJAX para encerrar a sessão
                     $.ajax({
                         type: 'POST',
-                        url: 'users/logout', 
+                        url: 'logout', 
                         dataType: 'json',
                         success: function(response) {
                             console.log(response); 
